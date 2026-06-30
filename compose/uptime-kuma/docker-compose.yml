@@ -10,3 +10,10 @@ services:
 
     volumes:
       - /home/OrByZ/workspace/infrastructure/homelab/data/uptime-kuma:/app/data
+
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
