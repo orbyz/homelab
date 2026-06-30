@@ -13,5 +13,5 @@ services:
       PGID: 1000
 
     volumes:
-      - ../../data/homepage:/app/config
+      - /home/OrByZ/workspace/infrastructure/homelab/data/homepage:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
