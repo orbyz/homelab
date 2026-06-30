@@ -117,8 +117,8 @@ homelab/
 
 * [x] Docker
 * [x] Portainer
-* [ ] Homepage
-* [ ] Uptime Kuma
+* [x] Homepage
+* [x] Uptime Kuma
 * [ ] AdGuard Home
 * [ ] WireGuard
 * [ ] Nginx Proxy Manager
