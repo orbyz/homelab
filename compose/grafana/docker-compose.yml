@@ -1,0 +1,23 @@
+services:
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+
+    restart: unless-stopped
+
+    ports:
+      - "3003:3000"
+
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+
+    volumes:
+      - /home/OrByZ/workspace/infrastructure/homelab/data/grafana:/var/lib/grafana:Z
+
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
