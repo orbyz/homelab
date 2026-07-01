@@ -9,12 +9,10 @@ services:
       - "3000:3000"
 
     environment:
-      PUID: 1000
-      PGID: 1000
+      HOMEPAGE_ALLOWED_HOSTS: home.lab,192.168.1.5,localhost
 
     volumes:
       - /home/OrByZ/workspace/infrastructure/homelab/data/homepage:/app/config
-      - /var/run/docker.sock:/var/run/docker.sock:ro
 
     networks:
       - homelab
