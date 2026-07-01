@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
 
     ports:
-      - "3002:3000" # Asistente de instalación
+      - "3002:80"
       - "53:53/tcp"
       - "53:53/udp"
 
