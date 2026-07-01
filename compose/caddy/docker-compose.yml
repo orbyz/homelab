@@ -1,7 +1,6 @@
 services:
   caddy:
     image: caddy:2.10
-
     container_name: caddy
 
     restart: unless-stopped
@@ -11,9 +10,9 @@ services:
       - "443:443"
 
     volumes:
-      - ../../data/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - ../../data/caddy/data:/data
-      - ../../data/caddy/config:/config
+      - /home/OrByZ/workspace/infrastructure/homelab/data/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - /home/OrByZ/workspace/infrastructure/homelab/data/caddy/data:/data
+      - /home/OrByZ/workspace/infrastructure/homelab/data/caddy/config:/config
 
     networks:
       - homelab
