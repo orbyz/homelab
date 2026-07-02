@@ -1,19 +1,25 @@
 services:
   grafana:
     image: grafana/grafana-oss:latest
+
     container_name: grafana
 
     restart: unless-stopped
 
-    ports:
-      - "3003:3000"
-
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
 
     volumes:
       - /home/OrByZ/workspace/infrastructure/homelab/data/grafana:/var/lib/grafana:Z
+
+    labels:
+      - traefik.enable=true
+
+      - traefik.http.routers.grafana.rule=Host(`grafana.orbyz.lab`)
+      - traefik.http.routers.grafana.entrypoints=web
+
+      - traefik.http.services.grafana.loadbalancer.server.port=3000
 
     networks:
       - homelab
