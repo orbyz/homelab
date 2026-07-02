@@ -14,10 +14,8 @@ services:
 
     labels:
       - traefik.enable=true
-
-      - traefik.http.routers.home.rule=Host(`home.orbyz.lab`)
       - traefik.http.routers.home.entrypoints=web
-
+      - traefik.http.routers.home.rule=Host(`home.orbyz.lab`) || Host(`home.internal.orbyzstudio.dev`)
       - traefik.http.services.home.loadbalancer.server.port=3000
 
     networks:

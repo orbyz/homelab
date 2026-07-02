@@ -1,25 +1,18 @@
 services:
   traefik:
     image: traefik:v3.6.1
-
     container_name: traefik
 
     restart: unless-stopped
+
+    env_file:
+      - .env
 
     environment:
       DOCKER_API_VERSION: "1.55"
 
     command:
-      - --api.dashboard=true
-      - --api.insecure=true
-
-      - --providers.docker=true
-      - --providers.docker.exposedbydefault=false
-      - --providers.docker.network=homelab
-
-      - --entrypoints.web.address=:80
-
-      - --log.level=DEBUG
+      - --configFile=/etc/traefik/traefik.yml
 
     ports:
       - "80:80"
@@ -27,6 +20,9 @@ services:
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./dynamic:/etc/traefik/dynamic:ro
+      - ./letsencrypt:/letsencrypt
 
     networks:
       - homelab
