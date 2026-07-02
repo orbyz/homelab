@@ -1,3 +1,19 @@
+# Runtime
 data/
 backups/
-.env
+
+# Secrets
+**/.env
+
+# TLS
+**/acme.json
+
+# Logs
+*.log
+
+# Editors
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
