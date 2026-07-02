@@ -1,18 +1,26 @@
 services:
   adguard-home:
     image: adguard/adguardhome:latest
+
     container_name: adguard-home
 
     restart: unless-stopped
 
     ports:
-      - "3002:80"
       - "53:53/tcp"
       - "53:53/udp"
 
     volumes:
       - /home/OrByZ/workspace/infrastructure/homelab/data/adguard-home/work:/opt/adguardhome/work
       - /home/OrByZ/workspace/infrastructure/homelab/data/adguard-home/conf:/opt/adguardhome/conf
+
+    labels:
+      - traefik.enable=true
+
+      - traefik.http.routers.adguard.rule=Host(`adguard.orbyz.lab`)
+      - traefik.http.routers.adguard.entrypoints=web
+
+      - traefik.http.services.adguard.loadbalancer.server.port=80
 
     networks:
       - homelab
