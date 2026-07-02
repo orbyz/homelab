@@ -1,18 +1,24 @@
 services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
+
     container_name: homepage
 
     restart: unless-stopped
 
-    ports:
-      - "3000:3000"
-
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: home.lab,192.168.1.5,localhost
+      HOMEPAGE_ALLOWED_HOSTS: home.orbyz.lab,192.168.1.5,localhost
 
     volumes:
       - /home/OrByZ/workspace/infrastructure/homelab/data/homepage:/app/config
+
+    labels:
+      - traefik.enable=true
+
+      - traefik.http.routers.home.rule=Host(`home.orbyz.lab`)
+      - traefik.http.routers.home.entrypoints=web
+
+      - traefik.http.services.home.loadbalancer.server.port=3000
 
     networks:
       - homelab
